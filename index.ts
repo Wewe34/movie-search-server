@@ -4,10 +4,12 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
 
+
 dotenv.config();
 
 const app = express();
-console.log(process.env.MONGO_PASSWORD)
+
+
 
 try {
   mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}${process.env.MONGO_CLUSTER}${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`);
@@ -20,4 +22,7 @@ try {
 
 const dbConnection = mongoose.connection;
 dbConnection.on("error", (err) => console.log(`Connection error ${err}`));
-dbConnection.once("open", () => console.log("Connected to DB!"));
+dbConnection.once("open", () => {
+  console.log("Connected to DB!")
+})
+
