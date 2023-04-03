@@ -9,7 +9,9 @@ dotenv.config();
 
 const app = express();
 
-
+app.get('/', (req, res) => {
+  console.log('Request from client!');
+})
 
 try {
   mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}${process.env.MONGO_CLUSTER}${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`);
