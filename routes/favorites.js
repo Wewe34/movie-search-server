@@ -2,6 +2,14 @@ import express from 'express';
 var router = express.Router();
 import User from '../db/schemas/User.js';
 
+router.get('/:userId', async (req, res) => {
+    try {
+        const user = await User.findOne({user_id: req.params.userId });
+        res.send(user.favorites);
+    } catch (error) {
+        console.error(error);
+    }
+})
 
 router.post('/', async (req, res) => {
     try {
