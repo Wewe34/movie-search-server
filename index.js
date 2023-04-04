@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import favorites from './routes/favorites.js';
+import watchlist from './routes/watchlist.js';
 import User from './db/schemas/User.js';
 
 dotenv.config();
@@ -12,6 +13,7 @@ app.use(express.json())
 app.use(cors({origin: [process.env.CLIENT], credentials: true}))
 
 app.use('/favorites', favorites);
+app.use('/watchlist', watchlist);
 
 const port = process.env.PORT || 8000;
 
