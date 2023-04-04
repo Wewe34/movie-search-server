@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { selectionSchema } from "./Selection.js";
 
 const userSchema = new mongoose.Schema({
-    id: String,
+    user_id: String,
     name: String,
     favorites: [selectionSchema],
     watchlist: [selectionSchema]

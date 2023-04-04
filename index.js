@@ -2,16 +2,33 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-
-
+import favorites from './routes/favorites.js';
+import User from './db/schemas/User.js';
 
 dotenv.config();
 
 const app = express();
+app.use(express.json())
+app.use(cors({origin: [process.env.CLIENT], credentials: true}))
+
+app.use('/favorites', favorites);
+
+const port = process.env.PORT || 8000;
 
 app.get('/', (req, res) => {
   console.log('Request from client!');
+  res.send('from the server!!');
 })
+
+run()
+async function run() {
+  try {
+    const user = await User.findOne({user_id:'112851022833526308013'});
+    console.log(user);
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 try {
   mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}${process.env.MONGO_CLUSTER}${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`);
