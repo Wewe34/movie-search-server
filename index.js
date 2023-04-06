@@ -5,15 +5,24 @@ import mongoose from 'mongoose';
 import favorites from './routes/favorites.js';
 import watchlist from './routes/watchlist.js';
 import User from './db/schemas/User.js';
+import { REQ_URL } from './constants.js';
 
 dotenv.config();
 
 const app = express();
 app.use(express.json())
-app.use(cors({origin: [process.env.CLIENT], credentials: true}))
+app.use(cors({origin: [REQ_URL], credentials: true}))
 
 app.use('/favorites', favorites);
 app.use('/watchlist', watchlist);
+
+export function getReqURL() {
+  if (process.env.NODE_ENV === 'PROD') {
+    return 'https://main.d3pru7jjdtetx3.amplifyapp.com'
+  } else {
+    return 'http://localhost:3000'
+  }
+}
 
 const port = process.env.PORT || 8000;
 
