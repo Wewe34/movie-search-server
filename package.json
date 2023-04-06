@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon MONGO_USERNAME=$MONGO_USERNAME MONGO_PASSWORD=$MONGO_PASSWORD MONGO_DATABASE=$MONGO_DATABASE MONGO_CLUSTER=$MONGO_CLUSTER NODE_ENV=$NODE_ENV forever start index.js"
   },
   "repository": {
     "type": "git",
